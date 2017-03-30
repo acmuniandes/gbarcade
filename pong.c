@@ -4,10 +4,106 @@
 #include "title.c"
 #include "titles.c"
 
+void title();
+void game();
+void clearScreen();
+
+//paddle 1 cords
+unsigned char PosPad1;
+
+//paddle 2 cords
+unsigned char PosPad2;
+
+//ball
+unsigned char xBall;
+unsigned char yBall;
+unsigned char xVel;
+unsigned char yVel;
+
+//Extra
+unsigned char score1=0;
+unsigned char score2=0;
+
 void main(){
-	SPRITES_8x16;
-	set_sprite_data(0, 8, paddle);
-	set_sprite_tile(0, 0);
-	move_sprite(0, 75, 75);
-	SHOW_SPRITES;
+	
+}
+
+void title(){
+	clearScreen();
+	while(joypad()!=J_START) {
+		printf("\n \n \n \n \n Press Start!");
+
+		}
+		game();
+}
+
+void game(){
+	while(1) {
+
+	switch(joypad()) {
+		
+		case J_RIGHT :
+			delay(100);
+			break;
+		case J_LEFT : 
+            delay(100);
+			break;
+		case J_UP :
+		
+			if(xPad1<=0){
+				delay(100);
+			break;	
+			}else{
+				delay(100);
+				PosPad1++;
+				break;
+			}
+		
+		case J_DOWN :
+			if(xPad1>=160){
+				delay(100);
+			break;	
+			}else{
+				delay(100);
+				PosPad1--;
+				break;
+			}
+			
+		case J_START : 
+			delay(100);
+			break;
+		case J_SELECT : 
+			printf("Select!\n");
+			delay(100);
+			break;
+		case J_A : 
+		if(xPad2<=0){
+		delay(100);
+			break;	
+			}else{
+				delay(100);
+				PosPad2++;
+				break;
+			}
+
+		case J_B : 
+			if(xPad2>=160){
+				delay(100);
+			break;	
+			}else{
+				delay(100);
+				PosPad2--;
+				break;
+			}
+			
+		default :
+			break;
+			}
+		}
+}
+void clearScreen(){
+	int i;
+     		for (i = 0; i < 32; i++){
+				printf("\n");
+			}
 }
