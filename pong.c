@@ -1,12 +1,8 @@
 #include <gb/gb.h> 
 #include "ball.c"
 #include "paddle.c"
-#include "title.c"
-#include "titles.c"
 
-void title();
-void game();
-void clearScreen();
+
 
 //paddle 1 cords
 unsigned char PosPad1;
@@ -24,20 +20,7 @@ unsigned char yVel;
 unsigned char score1=0;
 unsigned char score2=0;
 
-void main(){
-	
-}
-
-void title(){
-	clearScreen();
-	while(joypad()!=J_START) {
-		printf("\n \n \n \n \n Press Start!");
-
-		}
-		game();
-}
-
-void game(){
+void pong(){
 	while(1) {
 
 	switch(joypad()) {
@@ -100,10 +83,4 @@ void game(){
 			break;
 			}
 		}
-}
-void clearScreen(){
-	int i;
-     		for (i = 0; i < 32; i++){
-				printf("\n");
-			}
 }

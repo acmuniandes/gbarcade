@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <gb/gb.h>
 
 
@@ -284,8 +284,11 @@ unsigned char tile[] ={
 };
 
 
-int main(){
-    while(joypad()!=J_START) {
+void main(){
+loadTitle();
+}
+void loadTitle(){
+   //loads background
 	set_bkg_data(0,255,tile);
 	VBK_REG = 1;
 	VBK_REG = 0;
@@ -294,16 +297,40 @@ int main(){
 	
 	SHOW_BKG;
 	DISPLAY_ON;
-    
-    SPRITES_8x8;
+	
+    //loads "(press*start)"
+	
+	while(joypad()!=J_START){
+	 SPRITES_8x8;
     set_sprite_data(0, 8, pStart);
 	set_sprite_tile(0, 0);
 	move_sprite(0, 70, 120);
-    
-    set_sprite_data(1, 8, pStart);
-	set_sprite_tile(0, 0);
-	move_sprite(0, 78, 120);
-    SHOW_SPRITES;
-    }
-    return 0;
-}
+
+
+	set_sprite_tile(1, 1);
+	move_sprite(1, 78, 120);
+
+	set_sprite_tile(2, 2);
+	move_sprite(2, 86, 120);
+
+	set_sprite_tile(3, 3);
+	move_sprite(3, 94, 120);
+
+	set_sprite_tile(4, 4);
+	move_sprite(4, 102, 120);
+	
+	set_sprite_tile(5, 5);
+	move_sprite(5, 110, 120);
+
+	set_sprite_tile(6, 6);
+	move_sprite(6, 118, 120);
+	
+	set_sprite_tile(7, 7);
+	move_sprite(7, 126, 120);
+
+	
+	SHOW_SPRITES;
+	delay(600);
+	HIDE_SPRITES;
+	delay(600);
+	}
