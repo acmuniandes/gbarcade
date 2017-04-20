@@ -27,13 +27,6 @@ unsigned char pStart[] =
 
 
 /////title screen
-const int title_tile_map_size = 0x0168;
-const int title_tile_map_width = 0x14;
-const int title_tile_map_height = 0x12;
-
-const int title_tile_data_size = 0x0CF0;
-const int title_tile_count = 0x0168;
-
 
 // ////////////////
 // //            //
@@ -284,12 +277,9 @@ unsigned char tile[] ={
 };
 
 
-void main(){
-loadTitle();
-}
 void loadTitle(){
    //loads background
-	set_bkg_data(0,255,tile);
+	set_bkg_data(0,207,tile);
 	VBK_REG = 1;
 	VBK_REG = 0;
 	
@@ -301,7 +291,7 @@ void loadTitle(){
     //loads "(press*start)"
 	
 	while(joypad()!=J_START){
-	 SPRITES_8x8;
+	SPRITES_8x8;
     set_sprite_data(0, 8, pStart);
 	set_sprite_tile(0, 0);
 	move_sprite(0, 70, 120);
@@ -310,20 +300,27 @@ void loadTitle(){
 	set_sprite_tile(1, 1);
 	move_sprite(1, 78, 120);
 
+	
+	
 	set_sprite_tile(2, 2);
 	move_sprite(2, 86, 120);
+	
 
 	set_sprite_tile(3, 3);
 	move_sprite(3, 94, 120);
 
+	
 	set_sprite_tile(4, 4);
 	move_sprite(4, 102, 120);
-	
+
+		
 	set_sprite_tile(5, 5);
 	move_sprite(5, 110, 120);
 
+	
 	set_sprite_tile(6, 6);
 	move_sprite(6, 118, 120);
+
 	
 	set_sprite_tile(7, 7);
 	move_sprite(7, 126, 120);
@@ -333,4 +330,8 @@ void loadTitle(){
 	delay(600);
 	HIDE_SPRITES;
 	delay(600);
+	wait_vbl_done(); 
 	}
+	HIDE_BKG;
+	HIDE_SPRITES;
+}
