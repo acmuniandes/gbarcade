@@ -152,20 +152,21 @@ void startBall(){
 	xBall=80;
 	yBall=72;
 	move_sprite(4, 80, 72);
-	printf("    ""%i", score1,"    ""%i", score2);
-	while(count!=8000){
-		
-		count++;
+	printf("PAUSE");
+	pause:
+	if(joypad()==J_START){
+		if(score1>=score2){
+			xVel=1;
+			yVel=0;
+		}else {
+			xVel=-1;
+			yVel=0;
+		}
+		newBall=false;
+	}else{
+		goto pause;
 	}
-	count=0;
-	if(score1>=score2){
-		xVel=1;
-		yVel=0;
-	}else {
-		xVel=-1;
-		yVel=0;
-	}
-	newBall=false;
+	
 }
 void checkControls(){
 	countPad++;
