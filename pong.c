@@ -82,15 +82,11 @@ void loadSprites(){
 }
 
 bool collisionCheck(unsigned char x1, unsigned char y1, unsigned char w1, unsigned char h1, unsigned char x2, unsigned char y2, unsigned char w2, unsigned char h2){
-		if ((x1 < (x2+w2)) && ((x1+w1) > x2) && (y1 < (h2+y2)) && ((y1+h1) > y2)) {
-		
-		return true;
-	
-	}else {
-		
+	if ((x1 < (x2+w2)) && ((x1+w1) > x2) && (y1 < (h2+y2)) && ((y1+h1) > y2)) {
+		return true; 
+	} else {
 		return false;
-	
-}
+    }
 }
 
 void updateSprite(char pad, signed char cuanto){
