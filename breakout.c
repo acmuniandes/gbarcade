@@ -3,7 +3,7 @@
 
 #include "ball.c"
 #include "paddleB.c"
-
+#include "block.c"
 //boolean implementation
 typedef int bool;
 #define true 1
@@ -18,10 +18,11 @@ void moveBall();
 bool collisionCheck(unsigned char x1, unsigned char y1, unsigned char w1, unsigned char h1, unsigned char x2, unsigned char y2, unsigned char w2, unsigned char h2);
 
 
+UINT8 bricks[3][50];
 UINT8 char ballInfo[4] = {80,72,0,0};//ball[0]X position// ball[1]Y position //ball[2]X velocity// ball[3]ball[2]Y velocity//
 unsigned char player=50; //player's X position
 UINT8 score=0;//players score
-bool playing=true; // this will be usefull later for delaying the start...
+bool playing=true; // this will be useful later for delaying the start...
 //ball
 unsigned char xBall=80;
 unsigned char yBall=72;
@@ -31,6 +32,7 @@ bool newBall=true;
 //counter for delay -> this must be changed later
 unsigned char countPad=0;
 int count=0;//Delays the ball without halt the whole system
+int i, ten;
 
 void main(){
 	loadSprites();
@@ -46,6 +48,7 @@ void loadSprites(){
 	SPRITES_8x8;
 	set_sprite_data(0,2,paddle);
 	set_sprite_data(2,2,ball);
+	set_sprite_data(3,4,block);
     //paddle
 	set_sprite_tile(0,0);
 	set_sprite_tile(1,1);
@@ -58,6 +61,18 @@ void loadSprites(){
     
     //sets ball
 	move_sprite(2, xBall, yBall); 
+		ten=0;//each row can contain 10 blocks(160px/16px), so this counts when to change the row value
+		for(i=0;i<50;i++){
+			if(ten==9){
+				ten=0;}else{
+					ten++;}
+			 //sets it to true	
+			 bricks[0][i]=1;
+			 //sets x
+			 bricks[1][i]=ten*16;
+			 //sets  y
+			 bricks[2][i]=(i/10)*8;
+		}
 	DISPLAY_ON;
 	SHOW_SPRITES;
 }
