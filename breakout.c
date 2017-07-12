@@ -93,24 +93,34 @@ void moveBall(){
     if(ballInfo[0]==0 || ballInfo[0]==160){
 		ballInfo[2]=ballInfo[2]*-1;
 	}
-	if(ballInfo[1]==28 && ballInfo[0]>=10){ // i*20+10
+	if(ballInfo[1]<=28 && ballInfo[0]>=10){ // i*20+10, 
         //Here we check possible collision with a brick 
-        idx = (ballInfo[0]-10)/20;
-<<<<<<< HEAD
-        if((ballInfo[0]-10)%20<17 && bricks[0][idx]==1 && ballInfo[3]==-1){
+        idx = (ballInfo[0]-9)/20;
+        if(ballInfo[1]==28 && bricks[0][idx]==1 && ballInfo[3]==-1){
             ballInfo[3]=ballInfo[3]*-1;
-=======
-        if((ballInfo[0]-10)%20<17 && bricks[0][idx]==1){
->>>>>>> 22088b81aa7c18ee6b47019f04821381346b2ed2
             bricks[0][idx]=0;// sets into false 
             bricks[1][idx]=0;
             bricks[2][idx]=0; // hide it (dont know what else can I do...)
             move_sprite(idx+3, bricks[1][idx], bricks[2][idx]);
             move_sprite(idx+33, bricks[1][idx] + 8, bricks[2][idx]);
             // next: make game over after all bricks are gone!
+        } else if(ballInfo[0]%20==10 && bricks[0][idx]==1 && ballInfo[2]>0){ // Hits the left side of a brick 
+            ballInfo[2]=ballInfo[2]*-1;
+            bricks[0][idx]=0;// sets into false 
+            bricks[1][idx]=0;
+            bricks[2][idx]=0; // hide it (dont know what else can I do...)
+            move_sprite(idx+3, bricks[1][idx], bricks[2][idx]);
+            move_sprite(idx+33, bricks[1][idx] + 8, bricks[2][idx]);
+        } else if(ballInfo[0]%20==6 && bricks[0][idx]==1 && ballInfo[2]<0){ // Hits the right side of a brick
+            ballInfo[2]=ballInfo[2]*-1;
+            bricks[0][idx]=0;// sets into false 
+            bricks[1][idx]=0;
+            bricks[2][idx]=0; // hide it (dont know what else can I do...)
+            move_sprite(idx+3, bricks[1][idx], bricks[2][idx]);
+            move_sprite(idx+33, bricks[1][idx] + 8, bricks[2][idx]);
         }
     }
-    else if(ballInfo[1]==10){
+    /*else*/ if(ballInfo[1]==10){
 		ballInfo[3]=ballInfo[3]*-1;
 	}
     
