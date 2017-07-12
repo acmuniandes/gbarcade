@@ -96,7 +96,12 @@ void moveBall(){
 	if(ballInfo[1]==28 && ballInfo[0]>=10){ // i*20+10
         //Here we check possible collision with a brick 
         idx = (ballInfo[0]-10)/20;
+<<<<<<< HEAD
+        if((ballInfo[0]-10)%20<17 && bricks[0][idx]==1 && ballInfo[3]==-1){
+            ballInfo[3]=ballInfo[3]*-1;
+=======
         if((ballInfo[0]-10)%20<17 && bricks[0][idx]==1){
+>>>>>>> 22088b81aa7c18ee6b47019f04821381346b2ed2
             bricks[0][idx]=0;// sets into false 
             bricks[1][idx]=0;
             bricks[2][idx]=0; // hide it (dont know what else can I do...)
